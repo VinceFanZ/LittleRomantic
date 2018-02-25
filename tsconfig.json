@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*.ts"
+	],
+  "parcelTsPluginOptions": {
+    // If true type-checking is disabled
+    "transpileOnly": false
+  }
+}
