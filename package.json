@@ -1,8 +1,8 @@
 {
-  "name": "LittleRomantic",
+  "name": "romance",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:VinceFanZ/LittleRomantic.git",
+  "repository": "git@github.com:VinceFanZ/romance.git",
   "author": "vince <vincefanz@gmail.com>",
   "license": "MIT",
   "scripts": {
