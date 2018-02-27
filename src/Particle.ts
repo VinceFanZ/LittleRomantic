@@ -28,13 +28,27 @@ class Particle {
     this.vx = radius * Math.cos(this.radian) * this.speed
     this.vy = radius * Math.sin(this.radian) * this.speed
   }
+
+  /**
+   * 渲染微粒
+   *
+   * @param {CanvasRenderingContext2D} ctx canvas
+   * @memberof Particle
+   */
   public render (ctx: CanvasRenderingContext2D): void {
     this.go()
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
     ctx.fill()
   }
-  public go (): void {
+
+  /**
+   * 微粒移动
+   *
+   * @private
+   * @memberof Particle
+   */
+  private go (): void {
     this.x += this.vx
     this.y += this.vy
     this.vy += 0.02 // 重力影响 y越大实际越偏下
