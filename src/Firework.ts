@@ -71,6 +71,26 @@ class Firework {
       this.particles.push(new Particle(this.xEnd, this.yEnd))
     }
   }
+
+  /**
+   * 升空
+   *
+   * @private
+   * @memberof Firework
+   */
+  private rise (): void {
+    this.y += this.velocity * 1
+    this.velocity += 0.005 // 阻力
+
+    // 烟花升空渐隐
+    if (this.y - this.yEnd <= 50) {
+      this.opacity = (this.y - this.yEnd) / 50
+    }
+
+    if (this.y <= this.yEnd) {
+      this.status = 2
+    }
+  }
 }
 
 export default Firework
