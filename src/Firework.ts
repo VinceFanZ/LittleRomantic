@@ -22,13 +22,13 @@ class Firework {
   private wait: number
   private count: number
 
-  private size: number = 2
-  private velocity: number = -3
+  private size: number = 2 // 烟花半径大小
+  private velocity: number = -3 // 上升速度
 
   private opacity: number = 0.8
   private color: string = `hsla(${Math.floor(360 * Math.random())},80%,60%,1)`
 
-  private particles: Array<any> = []
+  private particles: Array<Particle> = []
 
   private status: number = 1
 
@@ -58,6 +58,56 @@ class Firework {
     this.count = count
 
     this.createParticles()
+  }
+
+  /**
+   * 渲染烟花
+   *
+   * @param {CanvasRenderingContext2D} ctx canvas
+   * @returns {boolean}
+   * @memberof Firework
+   */
+  public render (ctx: CanvasRenderingContext2D): boolean {
+    switch (this.status) {
+      case 1:
+        ctx.save()
+        ctx.beginPath()
+        ctx.globalCompositeOperation = 'lighter'
+        ctx.globalAlpha = this.opacity
+        ctx.translate(this.x, this.y)
+        ctx.scale(0.8, 2.3)
+        ctx.translate(-this.x, -this.y)
+        ctx.fillStyle = this.color
+        ctx.arc(this.x + Math.sin(Math.PI * 2 * Math.random()) / 1.2, this.y, this.size, 0, Math.PI * 2, false)
+        ctx.fill()
+        ctx.restore()
+
+        this.rise()
+        return true
+        break
+      case 2:
+        // 等待爆炸
+        if (--this.wait <= 0) {
+          this.opacity = 0
+          this.status = 3
+        }
+        return true
+        break
+      case 3:
+        ctx.save()
+        ctx.globalCompositeOperation = 'lighter'
+        ctx.globalAlpha = this.opacity
+        ctx.fillStyle = this.color
+        this.particles.forEach((particle) => {
+          particle.render(ctx)
+        })
+        ctx.restore()
+        this.opacity -= 0.01
+        return this.opacity > 0
+        break
+      default:
+        return false
+    }
   }
 
   /**
