@@ -9,6 +9,11 @@ const config = {
   height: window.innerHeight || document.documentElement.clientHeight,
 }
 
+/**
+ * 烟花类
+ *
+ * @class Firework
+ */
 class Firework {
   private x: number
   private y: number
@@ -27,6 +32,16 @@ class Firework {
 
   private status: number = 1
 
+  /**
+   * Creates an instance of Firework.
+   * @param {number} [x=config.width / 8 + Math.random() * config.width * 3 / 4] 发射点 x
+   * @param {number} [y=config.height] 发射点 y
+   * @param {number} [xEnd] 爆炸点 x
+   * @param {number} [yEnd=config.width / 8 + Math.random() * config.width * 3 / 8] 爆炸点 y
+   * @param {number} [wait=30 + Math.random() * 30] 升空后等待炸裂时间
+   * @param {number} [count=300] 炸裂后微粒个数
+   * @memberof Firework
+   */
   constructor (
     x: number = config.width / 8 + Math.random() * config.width * 3 / 4,
     y: number = config.height,
