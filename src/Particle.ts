@@ -12,7 +12,7 @@ class Particle {
   private vx: number
   private vy: number
 
-  constructor (x: number, y: number, size = 1, radius = 1.2) {
+  constructor (x: number, y: number, size: number = 1, radius: number = 1.2) {
     this.x = x
     this.y = y
     this.size = size
