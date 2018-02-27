@@ -11,7 +11,14 @@ class Particle {
   private radian: number
   private vx: number
   private vy: number
-
+  /**
+   * Creates an instance of Particle.
+   * @param {number} x 微粒 x 点
+   * @param {number} y 微粒 y 点
+   * @param {number} [size=1] 微粒半径大小
+   * @param {number} [radius=1.2]
+   * @memberof Particle
+   */
   constructor (x: number, y: number, size: number = 1, radius: number = 1.2) {
     this.x = x
     this.y = y
@@ -27,7 +34,7 @@ class Particle {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
     ctx.fill()
   }
-  private go (): void {
+  public go (): void {
     this.x += this.vx
     this.y += this.vy
     this.vy += 0.02 // 重力影响 y越大实际越偏下
