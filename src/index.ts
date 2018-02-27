@@ -2,6 +2,7 @@
 
 import 'normalize.css'
 import createCanvas from './create-canvas'
+import Firework from './Firework'
 import Particle from './Particle'
 
 const viewWidth = window.innerWidth || document.documentElement.clientWidth
