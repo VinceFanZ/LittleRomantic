@@ -1,8 +1,8 @@
 import Firework from './Firework'
 
 export default function startFirework (ctx: CanvasRenderingContext2D): void {
-  const viewWidth = window.innerWidth || document.documentElement.clientWidth
-  const viewHeight = window.innerHeight || document.documentElement.clientHeight
+  const viewWidth = ctx.canvas.width
+  const viewHeight = ctx.canvas.height
 
   const fireworkTimeRange: { min: number; max: number } = { min: 30, max: 60 }
   let fireworkTime = Math.floor(Math.random() * (fireworkTimeRange.max - fireworkTimeRange.min) + fireworkTimeRange.min)
