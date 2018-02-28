@@ -1,7 +1,3 @@
-// 烟花状态：烟花应有三个状态： 升空 等待炸裂 炸裂后
-// 烟花：发射点（x, y），爆炸点(xEnd, yEnd)，升空后等待炸裂时间（wait），炸裂后微粒个数（count），烟花半径（radius）
-// 烟花炸裂后微粒：自身位置（x, y），自身大小（size），自身速度（rate），最大烟花半径（radius）。
-
 import Particle from './Particle'
 
 const config = {
@@ -39,7 +35,7 @@ class Firework {
    * @param {number} [xEnd] 爆炸点 x
    * @param {number} [yEnd=config.width / 8 + Math.random() * config.width * 3 / 8] 爆炸点 y
    * @param {number} [wait=30 + Math.random() * 30] 升空后等待炸裂时间
-   * @param {number} [count=300] 炸裂后微粒个数
+   * @param {number} [count=Math.floor(Math.random() * (400 - 250) + 250)] 炸裂后微粒个数
    * @memberof Firework
    */
   constructor (
@@ -48,12 +44,12 @@ class Firework {
     xEnd?: number,
     yEnd: number = config.width / 8 + Math.random() * config.width * 3 / 8,
     wait: number = 30 + Math.random() * 30,
-    count: number = 300,
+    count: number = Math.floor(Math.random() * (400 - 250) + 250),
   ) {
     this.x = x
     this.y = y
     this.xEnd = this.xEnd || x
-    this.yEnd = this.yEnd
+    this.yEnd = yEnd
     this.wait = wait
     this.count = count
 
@@ -84,15 +80,13 @@ class Firework {
 
         this.rise()
         return true
-        break
       case 2:
         // 等待爆炸
         if (--this.wait <= 0) {
-          this.opacity = 0
+          this.opacity = 1
           this.status = 3
         }
         return true
-        break
       case 3:
         ctx.save()
         ctx.globalCompositeOperation = 'lighter'
@@ -104,7 +98,6 @@ class Firework {
         ctx.restore()
         this.opacity -= 0.01
         return this.opacity > 0
-        break
       default:
         return false
     }
