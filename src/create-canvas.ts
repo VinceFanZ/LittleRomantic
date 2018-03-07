@@ -6,7 +6,7 @@
  * @param {string} [bgColor='#fff'] canvas 的背景色
  * @returns {HTMLCanvasElement}
  */
-function createCanvas (width: number, height: number, bgColor: string = '#fff'): HTMLCanvasElement {
+function createCanvas (width: number, height: number, bgColor?: string): HTMLCanvasElement {
   if (!document && !document.body) {
     console.error('document or body not find')
     return
@@ -14,7 +14,7 @@ function createCanvas (width: number, height: number, bgColor: string = '#fff'):
   const canvas = document.createElement('canvas')
   canvas.width = width
   canvas.height = height
-  canvas.style.backgroundColor = bgColor
+  bgColor && (canvas.style.backgroundColor = bgColor)
   document.body.appendChild(canvas)
 
   return canvas

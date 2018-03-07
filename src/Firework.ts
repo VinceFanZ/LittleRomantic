@@ -22,7 +22,8 @@ class Firework {
   private velocity: number = -3 // 上升速度
 
   private opacity: number = 0.8
-  private color: string = `hsla(${Math.floor(360 * Math.random())},80%,60%,1)`
+  private hue: number = Math.floor(360 * Math.random())
+  private color: string = `hsla(${this.hue},80%,60%,1)`
 
   private particles: Array<Particle> = []
 
@@ -100,6 +101,13 @@ class Firework {
         return this.opacity > 0
       default:
         return false
+    }
+  }
+
+  public getSkyColor (): { lightness: number; hue: number } {
+    return {
+      lightness: this.status === 3 ? this.opacity : 0,
+      hue: this.hue,
     }
   }
 
