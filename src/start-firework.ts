@@ -35,8 +35,8 @@ export default function startFirework (ctx: CanvasRenderingContext2D): void {
     }
 
     fireworks.forEach((firework, index) => {
-      skyColor =
-        skyColor.lightness >= fireworks[index].getSkyColor().lightness ? skyColor : fireworks[index].getSkyColor()
+      const getSkyColor = fireworks[index].getSkyColor()
+      skyColor = skyColor.lightness >= getSkyColor.lightness ? skyColor : getSkyColor
       !firework.render(ctx) && fireworks.splice(index, 1)
     })
   }
