@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/node": "^9.4.6",
+    "js2image": "^1.1.0",
     "normalize.css": "^8.0.0",
     "parcel-bundler": "^1.6.2",
     "typescript": "^2.7.2"
